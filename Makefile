@@ -6,7 +6,7 @@
 #    By: sebbaill <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 13:37:44 by sebbaill          #+#    #+#              #
-#    Updated: 2019/12/31 00:34:38 by sebbaill         ###   ########.fr        #
+#    Updated: 2019/12/03 17:04:57 by sebbaill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,15 +26,6 @@ SOURCEC =	ft_atoi.c		\
 		ft_isdigit.c		\
 		ft_isprint.c		\
 		ft_itoa.c			\
-		ft_lstadd_back.c	\
-		ft_lstadd_front.c	\
-		ft_lstclear.c		\
-		ft_lstdelone.c		\
-		ft_lstlast.c		\
-		ft_lstmap.c			\
-		ft_lstnew.c			\
-		ft_lstiter.c		\
-		ft_lstsize.c		\
 		ft_memalloc.c		\
 		ft_memccpy.c		\
 		ft_memchr.c			\
@@ -72,17 +63,34 @@ SOURCEC =	ft_atoi.c		\
 		ft_tolower.c		\
 		ft_toupper.c
 
+SOURCEC_BONUS = ft_lstadd_back.c	\
+		ft_lstadd_front.c	\
+		ft_lstclear.c		\
+		ft_lstdelone.c		\
+		ft_lstlast.c		\
+		ft_lstmap.c			\
+		ft_lstnew.c			\
+		ft_lstiter.c		\
+		ft_lstsize.c		\
+
 SOURCEO = $(SOURCEC:.c=.o)
+
+SOURCEO_BONUS = $(SOURCEC_BONUS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(SOURCEC) $(HEADER)
 	$(CC) $(CFLAGS) -c $(SOURCEC)
 	ar rcs $(NAME) $(SOURCEO)
-	@echo "\033[32mLibft compiled.\033[0m"
+	@echo "\033[32mLibft without bonus compiled.\033[0m"
+
+bonus: $(SOURCEC_BONUS) $(NAME)
+	$(CC) $(CFLAGS) -c $(SOURCEC_BONUS)
+	ar rcs $(NAME) $(SOURCEO_BONUS)
+	
 
 clean:
-	rm -rf $(SOURCEO)
+	rm -rf $(SOURCEO) $(SOURCEO_BONUS)
 	@echo "Binary files deleted"
 
 fclean: clean
